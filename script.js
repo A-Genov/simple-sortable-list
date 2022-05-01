@@ -2,16 +2,16 @@ const draggableList = document.getElementById('draggable-list');
 const check = document.getElementById('check');
 
 const richestPeople = [
-    'Elon Musk',
-    'Jeff Bezos',
-    'Bernard Arnault',
-    'Bill Gates',
-    'Warren Buffett',
-    'Larry Page',
-    'Sergey Brin',
-    'Steve Ballmer',
-    'Larry Ellison',
-    'Gautam Adani',
+    'Novak Djokovic',
+    'Daniil Medvedev',
+    'Alexander Zverev',
+    'Rafael Nadal',
+    'Stefanos Tsitsipas	',
+    'Matteo Berrettini',
+    'Casper Ruud',
+    'Andrey Rublev',
+    'Felix Auger-Aliassime',
+    'Cameron Norrie',
 ];
 
 // Store list items
@@ -81,6 +81,20 @@ function swapItems(fromIndex, toIndex) {
     listItems[toIndex].appendChild(itemOne);
 }
 
+// Check the order of list items
+function checkOrder() {
+    listItems.forEach((listItem, index) => {
+        const personName = listItem.querySelector('.draggable').innerText.trim();
+
+        if(personName !== richestPeople[index]) {
+            listItem.classList.add('wrong');
+        } else {
+            listItem.classList.remove('wrong');
+            listItem.classList.add('right');
+        }
+    })
+}
+
 function addEventListeners() {
     const draggables = document.querySelectorAll('.draggable');
     const dragListItems = document.querySelectorAll('.draggable-list li');
@@ -96,3 +110,5 @@ function addEventListeners() {
         item.addEventListener('dragleave', dragLeave)
     })
 }
+
+check.addEventListener('click', checkOrder);
